@@ -8,7 +8,7 @@ describe('Button component', () => {
   it('harus merender teks dengan benar', () => {
     render(<Button>Klik Saya</Button>)
     const button = screen.getByRole('button', { name: 'Klik Saya' })
-    expect(false).toBe(true)
+    expect(button).toBeInTheDocument()
   })
 
   it('harus memanggil fungsi onClick ketika diklik', async () => {
