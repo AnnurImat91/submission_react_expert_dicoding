@@ -29,10 +29,10 @@ const Navigation = () => {
 
           <nav className="hidden md:flex items-center gap-6">
             <Link to="/" className={`font-semibold text-sm transition-colors ${isActive('/') ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}>
-              Threasd
+              Threadsss
             </Link>
             <Link to="/leaderboard" className={`font-semibold text-sm transition-colors flex items-center gap-1 ${isActive('/leaderboard') ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}>
-              <Award size={16}/> Leaderboard
+              <Award size={16}/> Leaderboardddd
             </Link>
           </nav>
 
@@ -60,11 +60,11 @@ const Navigation = () => {
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around p-3 z-40">
         <Link to="/" className={`flex flex-col items-center p-2 rounded-lg ${isActive('/') ? 'text-gray-900' : 'text-gray-500'}`}>
           <MessageSquare size={24} />
-          <span className="text-[10px] font-semibold mt-1">Threasd</span>
+          <span className="text-[10px] font-semibold mt-1">Threadsss</span>
         </Link>
         <Link to="/leaderboard" className={`flex flex-col items-center p-2 rounded-lg ${isActive('/leaderboard') ? 'text-gray-900' : 'text-gray-500'}`}>
           <Award size={24} />
-          <span className="text-[10px] font-semibold mt-1">Leaderboard</span>
+          <span className="text-[10px] font-semibold mt-1">Leaderboardddd</span>
         </Link>
       </div>
     </>
