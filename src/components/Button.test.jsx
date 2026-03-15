@@ -15,7 +15,7 @@ describe('Button component', () => {
     const mockOnClick = vi.fn()
     render(<Button onClick={mockOnClick}>Klik Saya</Button>)
     const button = screen.getByRole('button', { name: 'Klik Saya' })
-    
+
     await userEvent.click(button)
     expect(mockOnClick).toHaveBeenCalled()
   })

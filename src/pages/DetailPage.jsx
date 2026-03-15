@@ -1,43 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { MessageSquare, ArrowLeft } from "lucide-react";
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { MessageSquare, ArrowLeft } from 'lucide-react'
 import {
   asyncGetThreadDetail,
   asyncAddComment,
   asyncVoteThreadDetail,
-  asyncVoteComment,
-} from "../states/threadDetail/action";
-import { showFormattedDate, postedAt } from "../../utils/index.js";
-import VoteButtons from "../components/VoteButtons";
-import Button from "../components/Button";
+  asyncVoteComment
+} from '../states/threadDetail/action'
+import { showFormattedDate, postedAt } from '../../utils/index.js'
+import VoteButtons from '../components/VoteButtons'
+import Button from '../components/Button'
 import parse from 'html-react-parser'
 
 const DetailPage = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const detail = useSelector((state) => state.threadDetail);
-  const authUser = useSelector((state) => state.authUser);
-  const [commentContent, setCommentContent] = useState("");
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const detail = useSelector((state) => state.threadDetail)
+  const authUser = useSelector((state) => state.authUser)
+  const [commentContent, setCommentContent] = useState('')
 
   useEffect(() => {
-    dispatch(asyncGetThreadDetail(id));
-  }, [dispatch, id]);
+    dispatch(asyncGetThreadDetail(id))
+  }, [dispatch, id])
 
   const onCommentSubmit = (e) => {
-    e.preventDefault();
-    if (!commentContent.trim()) return;
-    dispatch(asyncAddComment({ threadId: id, content: commentContent }));
-    setCommentContent("");
-  };
+    e.preventDefault()
+    if (!commentContent.trim()) return
+    dispatch(asyncAddComment({ threadId: id, content: commentContent }))
+    setCommentContent('')
+  }
 
-  if (!detail)
+  if (!detail) {
     return (
       <div className="text-center py-20 text-gray-500 text-sm">
         Memuat detail diskusi...
       </div>
-    );
+    )
+  }
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
@@ -95,7 +96,8 @@ const DetailPage = () => {
       <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
         <h3 className="text-lg font-bold text-gray-900 mb-6">Tulis Balasan</h3>
 
-        {authUser ? (
+        {authUser
+          ? (
           <form onSubmit={onCommentSubmit} className="mb-8">
             <textarea
               value={commentContent}
@@ -108,20 +110,21 @@ const DetailPage = () => {
               <Button type="submit">Kirim Balasan</Button>
             </div>
           </form>
-        ) : (
+            )
+          : (
           <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 text-center mb-8">
             <span className="block mb-4 text-sm text-gray-600">
               Anda harus masuk untuk meninggalkan balasan.
             </span>
             <Button
               variant="outline"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate('/login')}
               className="mx-auto text-sm py-2"
             >
               Masuk ke Akun
             </Button>
           </div>
-        )}
+            )}
 
         <div className="space-y-6">
           {detail.comments.map((comment) => (
@@ -152,8 +155,8 @@ const DetailPage = () => {
                       asyncVoteComment({
                         threadId: detail.id,
                         commentId: comment.id,
-                        voteType,
-                      }),
+                        voteType
+                      })
                     )
                   }
                 />
@@ -168,7 +171,7 @@ const DetailPage = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DetailPage;
+export default DetailPage

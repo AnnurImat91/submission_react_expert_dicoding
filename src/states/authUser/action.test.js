@@ -28,7 +28,7 @@ describe('asyncLoginUser thunk', () => {
     await asyncLoginUser({ email: 'test@test.com', password: 'password' }, navigate)(dispatch)
 
     // assert
-    expect(dispatch).toHaveBeenCalled() 
+    expect(dispatch).toHaveBeenCalled()
     expect(api.putAccessToken).toHaveBeenCalledWith(fakeToken)
     expect(navigate).toHaveBeenCalledWith('/')
   })

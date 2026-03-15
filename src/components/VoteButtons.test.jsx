@@ -8,22 +8,22 @@ describe('VoteButtons component', () => {
   it('harus memanggil onVote dengan argumen 1 ketika tombol upvote diklik', async () => {
     const mockOnVote = vi.fn()
     render(<VoteButtons upVotes={[]} downVotes={[]} onVote={mockOnVote} authUserId="user-1" />)
-    
+
     // Tombol pertama adalah upvote
     const buttons = screen.getAllByRole('button')
     await userEvent.click(buttons[0])
-    
+
     expect(mockOnVote).toHaveBeenCalledWith(1)
   })
 
   it('harus memanggil onVote dengan argumen -1 ketika tombol downvote diklik', async () => {
     const mockOnVote = vi.fn()
     render(<VoteButtons upVotes={[]} downVotes={[]} onVote={mockOnVote} authUserId="user-1" />)
-    
+
     // Tombol kedua adalah downvote
     const buttons = screen.getAllByRole('button')
     await userEvent.click(buttons[1])
-    
+
     expect(mockOnVote).toHaveBeenCalledWith(-1)
   })
 })
